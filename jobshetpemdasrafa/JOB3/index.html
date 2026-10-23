@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Online Saya</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cv-container">
+        <!-- Header Profil -->
+        <header class="cv-header">
+            <h1>MUHAMAT RAFA INRA</h1>
+            <p>Junior Web Developer | Siswa X TIP 3</p>
+        </header>
+
+        <!-- Kartu Informasi Diri (Card Info) -->
+        <section class="cv-card">
+            <h2>Tentang Saya</h2>
+            <p>Saya adalah siswa SMK jurusan Rekayasa Perangkat Lunak (RPL) yang berfokus pada pengembangan web frontend. Suka mempelajari hal baru dan memecahkan masalah melalui kode.</p>
+        </section>
+
+        <!-- Kartu Riwayat Pendidikan -->
+        <section class="cv-card">
+            <h2>Riwayat Pendidikan</h2>
+            <p><strong>SD RAUHATUL JANNATINNAIM</strong></p>
+            <p><strong>SMP MTS RAUHATUL JANNATINNAIM </strong><P>
+            <P><strong>SMK STRADA JAKARTA</strong><br/> Rekayasa Perangkat lunak </strong></P>
+
+        </section>
+
+        <!-- Bagian Keahlian dengan Flexbox -->
+        <section class="cv-card">
+            <h2>Keahlian Utama</h2>
+            <div class="skills-container">
+                <div class="skill-item">bermain bersaing</div>
+                <div class="skill-item">Responsive Design</div>
+                <div class="skill-item">Bisa Memmimpin club bola</div>
+            </div>
+        </section>
+    </div>
+    <div class="toggle-container">
+    <button class="btn-toggle" id="themeToggleBtn">Switch to Dark Mode</button>
+</div>
+</body>
+<!-- JavaScript Ringan untuk Menjalankan Toggle Mode secara Manual -->
+<script>
+    const btnToggle = document.getElementById('themeToggleBtn');
+    const body = document.body;
+
+    // Cek jika browser user aslinya menggunakan preferensi gelap
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) {
+        btnToggle.textContent = "Switch to Light Mode";
+    }
+
+    btnToggle.addEventListener('click', () => {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.toggle('light-theme');
+            if (body.classList.contains('light-theme')) {
+                btnToggle.textContent = "Switch to Dark Mode";
+            } else {
+                btnToggle.textContent = "Switch to Light Mode";
+            }
+        } else {
+            body.classList.toggle('dark-theme');
+            if (body.classList.contains('dark-theme')) {
+                btnToggle.textContent = "Switch to Light Mode";
+            } else {
+                btnToggle.textContent = "Switch to Dark Mode";
+            }
+        }
+    });
+</script>
+</html>

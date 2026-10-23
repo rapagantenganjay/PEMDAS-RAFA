@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nebula — Landing Page</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #0A0620;
+  --bg-panel: #150C34;
+  --bg-alt: #110A2A;
+  --line: #2E2260;
+  --text: #EDE9FE;
+  --text-soft: #A79FD1;
+  --accent: #38BDF8;
+  --accent-2: #EC4899;
+  --accent-3: #8B5CF6;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.accent{ color: var(--accent); }
+
+/* ---------- twinkling starfield ---------- */
+.starfield{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1.5px 1.5px at 10% 20%, #EDE9FE 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 80% 10%, #EDE9FE 100%, transparent 0),
+    radial-gradient(1px 1px at 60% 40%, #A79FD1 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 30% 70%, #EDE9FE 100%, transparent 0),
+    radial-gradient(1px 1px at 90% 60%, #A79FD1 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 45% 85%, #EDE9FE 100%, transparent 0),
+    radial-gradient(1px 1px at 15% 55%, #A79FD1 100%, transparent 0),
+    radial-gradient(1.5px 1.5px at 70% 90%, #EDE9FE 100%, transparent 0);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle{
+  from{ opacity: 0.5; }
+  to{ opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .starfield{ animation: none; opacity: 0.8; }
+}
+
+.navbar{
+  background: rgba(10,6,32,0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.navbar-brand{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text) !important;
+}
+.nav-link{
+  color: var(--text-soft) !important;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.nav-link:hover{ color: var(--accent) !important; }
+
+
+#heroCarousel .carousel-inner{
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 60px rgba(139,92,246,0.15);
+}
+
+#heroCarousel .slide-visual{
+  height: 460px;
+  width: 100%;
+  display: block;
+}
+
+
+.carousel-fade .carousel-item{
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.carousel-fade .carousel-item.active{
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.slide-visual{
+  transform: scale(1.02);
+  transition: transform 6s ease-out;
+}
+.carousel-item.active .slide-visual{
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .carousel-fade .carousel-item,
+  .slide-visual{ transition: none !important; transform: none !important; }
+}
+
+.carousel-caption{
+  text-align: left;
+  left: 6%;
+  right: auto;
+  bottom: 12%;
+  max-width: 540px;
+}
+
+.cap-eyebrow{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.carousel-caption h5{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--text);
+  text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+  margin-bottom: 8px;
+}
+
+.carousel-caption p{
+  color: var(--text-soft);
+  font-size: 15px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  margin: 0;
+}
+
+.carousel-indicators [data-bs-target]{
+  background-color: var(--accent);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  opacity: 0.4;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.carousel-indicators .active{
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+  background-color: rgba(21,12,52,0.65);
+  border-radius: 50%;
+  padding: 18px;
+  background-size: 50%;
+  transition: background-color 0.2s ease;
+}
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon{
+  background-color: rgba(139,92,246,0.55);
+}
+
+
+.section-block{
+  padding: 72px 0;
+  position: relative;
+}
+.section-alt{
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+h2{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  max-width: 22ch;
+  margin-bottom: 14px;
+}
+
+.lead-text{
+  color: var(--text-soft);
+  max-width: 60ch;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.mission-card{
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  height: 100%;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.mission-card:hover{
+  border-color: var(--accent-3);
+  transform: translateY(-3px);
+}
+.mission-card h5{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.mission-card p{
+  color: var(--text-soft);
+  font-size: 14.5px;
+  margin: 0;
+}
+
+
+.footer-block{
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  color: var(--text-soft);
+  font-size: 14px;
+}
+.text-muted-soft{ color: var(--text-soft); }
+
+@media (max-width: 767px){
+  #heroCarousel .slide-visual{ height: 300px; }
+  h2{ font-size: 24px; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="starfield" aria-hidden="true"></div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">nebula<span class="accent">.</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+        <li class="nav-item"><a class="nav-link" href="#missions">Misi</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id="heroCarousel" class="carousel slide carousel-fade py-4 mb-5" data-bs-ride="carousel" data-bs-interval="4500">
+
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+
+  <div class="carousel-inner">
+
+
+    <div class="carousel-item active">
+      <svg class="slide-visual" viewBox="0 0 1600 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Peluncuran Roket" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bgR" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0A0620"/>
+            <stop offset="60%" stop-color="#160B33"/>
+            <stop offset="100%" stop-color="#2A1050"/>
+          </linearGradient>
+          <radialGradient id="flareR" cx="70%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#EC4899" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#EC4899" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFD166"/>
+            <stop offset="100%" stop-color="#EC4899" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect width="1600" height="520" fill="url(#bgR)"/>
+        <rect width="1600" height="520" fill="url(#flareR)"/>
+        <g fill="#EDE9FE">
+          <circle cx="120" cy="80" r="2"/><circle cx="220" cy="160" r="1.5"/><circle cx="90" cy="260" r="2"/>
+          <circle cx="1400" cy="90" r="2"/><circle cx="1480" cy="200" r="1.5"/><circle cx="1340" cy="300" r="2"/>
+          <circle cx="300" cy="60" r="1.5"/><circle cx="700" cy="50" r="2"/><circle cx="1050" cy="70" r="1.5"/>
+          <circle cx="180" cy="420" r="1.5"/><circle cx="1500" cy="420" r="2"/><circle cx="60" cy="380" r="1.5"/>
+        </g>
+        <circle cx="1420" cy="130" r="46" fill="#2A1F4D" stroke="#8B7FD1" stroke-width="2"/>
+        <circle cx="1405" cy="118" r="8" fill="#231A44"/>
+        <circle cx="1436" cy="145" r="6" fill="#231A44"/>
+        <g transform="translate(760,120)">
+          <path d="M60 0 C90 40 90 140 60 190 C30 140 30 40 60 0 Z" fill="#EDE9FE" stroke="#8B7FD1" stroke-width="3"/>
+          <circle cx="60" cy="80" r="16" fill="#38BDF8" stroke="#0A0620" stroke-width="3"/>
+          <path d="M30 150 L0 210 L34 190 Z" fill="#EC4899"/>
+          <path d="M90 150 L120 210 L86 190 Z" fill="#EC4899"/>
+          <path d="M40 190 Q60 260 80 190 Z" fill="url(#flame)"/>
+        </g>
+        <ellipse cx="760" cy="260" rx="340" ry="26" fill="none" stroke="#8B7FD1" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="cap-eyebrow">Misi 01</p>
+        <h5>Menuju Orbit</h5>
+        <p>Setiap peluncuran adalah langkah menuju jangkauan yang lebih jauh.</p>
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <svg class="slide-visual" viewBox="0 0 1600 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Planet Bercincin" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bgP" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0A0620"/>
+            <stop offset="100%" stop-color="#1A0E3C"/>
+          </linearGradient>
+          <radialGradient id="planetShade" cx="35%" cy="30%" r="75%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="55%" stop-color="#5B21B6"/>
+            <stop offset="100%" stop-color="#2E1065"/>
+          </radialGradient>
+          <radialGradient id="glowP" cx="30%" cy="45%" r="55%">
+            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1600" height="520" fill="url(#bgP)"/>
+        <rect width="1600" height="520" fill="url(#glowP)"/>
+        <g fill="#EDE9FE">
+          <circle cx="1350" cy="100" r="2"/><circle cx="1460" cy="180" r="1.5"/><circle cx="1250" cy="260" r="2"/>
+          <circle cx="1500" cy="320" r="1.5"/><circle cx="1150" cy="90" r="2"/><circle cx="1400" cy="420" r="1.5"/>
+          <circle cx="80" cy="440" r="1.5"/><circle cx="150" cy="70" r="2"/>
+        </g>
+        <g transform="translate(560,80)">
+          <ellipse cx="230" cy="200" rx="330" ry="60" fill="none" stroke="#38BDF8" stroke-width="6" opacity="0.55" transform="rotate(-10 230 200)"/>
+          <circle cx="230" cy="200" r="160" fill="url(#planetShade)"/>
+          <ellipse cx="230" cy="200" rx="330" ry="60" fill="none" stroke="#7DD3FC" stroke-width="3" opacity="0.9" transform="rotate(-10 230 200)" stroke-dasharray="0 520 400"/>
+          <circle cx="170" cy="140" r="26" fill="#4C1D95" opacity="0.7"/>
+          <circle cx="300" cy="230" r="16" fill="#4C1D95" opacity="0.6"/>
+          <circle cx="250" cy="120" r="10" fill="#4C1D95" opacity="0.5"/>
+        </g>
+        <circle cx="1120" cy="380" r="30" fill="#2A1F4D" stroke="#8B7FD1" stroke-width="2"/>
+      </svg>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="cap-eyebrow">Misi 02</p>
+        <h5>Jelajah Antariksa</h5>
+        <p>Memetakan dunia baru di antara cincin dan bulan yang belum bernama.</p>
+      </div>
+    </div>
+
+
+    <div class="carousel-item">
+      <svg class="slide-visual" viewBox="0 0 1600 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Galaksi dan Nebula" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bgG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0A0620"/>
+            <stop offset="100%" stop-color="#1A0E3C"/>
+          </linearGradient>
+          <radialGradient id="nebula1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#EC4899" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#EC4899" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="nebula2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF7ED"/>
+            <stop offset="40%" stop-color="#FFD166"/>
+            <stop offset="100%" stop-color="#FFD166" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1600" height="520" fill="url(#bgG)"/>
+        <ellipse cx="560" cy="220" rx="380" ry="260" fill="url(#nebula1)"/>
+        <ellipse cx="1050" cy="320" rx="340" ry="220" fill="url(#nebula2)"/>
+        <g stroke="#C4B5FD" stroke-width="2" fill="none" opacity="0.55">
+          <path d="M800 260 C 900 180, 1050 200, 1080 300 C 1100 370, 1020 420, 950 400"/>
+          <path d="M800 260 C 700 340, 560 320, 530 230 C 510 170, 580 120, 650 140"/>
+        </g>
+        <circle cx="800" cy="260" r="60" fill="url(#core)"/>
+        <g fill="#EDE9FE">
+          <circle cx="140" cy="90" r="2"/><circle cx="220" cy="180" r="1.5"/><circle cx="90" cy="300" r="2"/>
+          <circle cx="1440" cy="100" r="2"/><circle cx="1500" cy="220" r="1.5"/><circle cx="1380" cy="360" r="2"/>
+          <circle cx="300" cy="420" r="1.5"/><circle cx="1200" cy="440" r="1.5"/><circle cx="60" cy="460" r="1.5"/>
+          <circle cx="1550" cy="440" r="2"/><circle cx="700" cy="60" r="1.5"/><circle cx="1000" cy="450" r="1.5"/>
+        </g>
+      </svg>
+      <div class="carousel-caption d-none d-md-block">
+        <p class="cap-eyebrow">Misi 03</p>
+        <h5>Di Jantung Galaksi</h5>
+        <p>Menembus kabut nebula menuju inti galaksi yang bercahaya.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Sebelumnya</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Berikutnya</span>
+  </button>
+
+</div>
+
+
+<!-- About -->
+<section id="about" class="section-block">
+  <div class="container">
+    <p class="eyebrow">01 — Tentang</p>
+    <h2>Menjelajah tanpa batas atmosfer</h2>
+    <p class="lead-text">Nebula adalah proyek konsep bertema antariksa — dibangun untuk latihan membuat komponen carousel Bootstrap yang halus dan responsif sebagai hero banner.</p>
+  </div>
+</section>
+
+<section id="missions" class="section-block section-alt">
+  <div class="container">
+    <p class="eyebrow">02 — Misi</p>
+    <h2>Lini masa eksplorasi</h2>
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+        <div class="mission-card">
+          <h5>Peluncuran</h5>
+          <p>Persiapan dan lepas landas menuju orbit rendah.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mission-card">
+          <h5>Orbit &amp; Survei</h5>
+          <p>Pemetaan planet dan pengumpulan data antariksa.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mission-card">
+          <h5>Kembali</h5>
+          <p>Perjalanan pulang melewati gugusan bintang.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer id="contact" class="footer-block">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+    <p class="mb-0">© 2026 nebula — dibuat untuk keperluan praktikum.</p>
+    <p class="mb-0 text-muted-soft">mission-control@nebula.example</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
